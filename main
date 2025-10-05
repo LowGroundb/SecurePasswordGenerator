@@ -1,0 +1,31 @@
+import sys
+import time
+import random
+import string
+import secrets
+def main():
+    while True:
+        try:
+            val = int(input("Tell me the length of the password you want to create (8-16): "))
+        except ValueError:
+            print("Please type a number.")
+            continue
+        if val < 8 or val > 16:
+            print("The password must be between 8 and 16 characters (inclusive).")
+            continue
+        Generator(val)
+        break
+
+def Generator(length):
+    # Animation runs once
+    for i in range(0,length):
+        for _ in range(0,length):
+            random_string = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(length))
+            sys.stdout.write('\r' + random_string)
+            time.sleep(0.1)
+            print("\r", end='')
+        print(str(random.randint(0, 9)), end='')
+        length -= 1
+
+main()
+
