@@ -1,6 +1,5 @@
 import sys
 import time
-import random
 import string
 import secrets
 def main():
@@ -13,19 +12,34 @@ def main():
         if val < 8 or val > 16:
             print("The password must be between 8 and 16 characters (inclusive).")
             continue
-        Generator(val)
+        animation(val)
         break
 
 def Generator(length):
-    # Animation runs once
-    for i in range(0,length):
-        for _ in range(0,length):
-            random_string = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(length))
-            sys.stdout.write('\r' + random_string)
-            time.sleep(0.1)
-            print("\r", end='')
-        print(str(random.randint(0, 9)), end='')
-        length -= 1
-
+    while True:
+            random_string = ''.join(secrets.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(length))
+            if Validation(random_string):
+                print("Your password is: " + random_string)
+                break
+            else:
+                continue
+def Validation(password):
+    if (any(char.isdigit() for char in password) and
+        any(char.isupper() for char in password) and
+        any(char.islower() for char in password) and
+        any(char in string.punctuation for char in password) and
+        len(password) >= 8):
+        return True
+    else:
+        return False
+def animation(length):
+    frames=0
+    while frames < 30:
+        random_string = ''.join(secrets.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(length))
+        sys.stdout.write('\r' + random_string)
+        time.sleep(0.1)
+        print("\r", end='')
+        frames += 1
+    Generator(length)
 main()
 
