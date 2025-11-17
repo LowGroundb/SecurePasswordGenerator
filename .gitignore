@@ -1,1 +1,31 @@
-tempCodeRunnerFile.python
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environments
+.venv/
+venv/
+env/
+
+# Packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Tests
+.pytest_cache/
+.coverage
+
+# Typing
+.mypy_cache/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
